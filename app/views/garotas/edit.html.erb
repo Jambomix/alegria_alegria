@@ -1,0 +1,11 @@
+<h1><%= link_to 'AlegriaAlegria', '/' %></h1>
+
+<div>
+  <h2><%= @garota.nome %></h2>
+  <img src="http://im.r7.com/outros/<%= @garota.foto %>" />
+
+  <%= form_tag '/garotas/save', :method=>:post %>   
+  <%= hidden_field_tag :id, @garota.id %>
+  <%= text_field_tag :tag_list, @garota.tag_list.join(', ') %>
+  <%= submit_tag 'Salvar' %>
+</div>

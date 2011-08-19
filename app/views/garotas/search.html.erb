@@ -17,7 +17,8 @@
   <ul>
     <% @garotas.each do |garota| %>
       <li>
-        <p><%= garota.nome %></p>
+      <p><%= garota.nome %></p> 
+      <%= link_to 'Editar', {:action=>'edit', :id=>garota.id} %>
         <img src="http://im.r7.com/outros/<%= garota.foto %>">
         tags: <% garota.tag_list.each do |t| %>
           <%= link_to t, {:action=>"search",:tag=>t} %>
@@ -25,6 +26,8 @@
       </li>
     <% end %>
   </ul>
+
+  <%= will_paginate @garotas %>
 </div>
 
 
