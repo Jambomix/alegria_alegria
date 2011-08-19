@@ -1,8 +1,30 @@
 <h1>Alegria Alegria</h1>
 
 <div>
-  <form>
-    <input type="text">
-  </form>
+  <% form_tag '/garotas/search', :method => 'get' do %>
+    <%= text_field_tag 'tag' %>
+    <%= submit_tag "Search" %>
+  <% end %>
 </div>
+
+<% if params[:tag] %>
+  <div>
+    <p><%= "Foram encontradas #{@garotas.size} garota(s) para a tag \"#{params[:tag]}\"" %></p>
+  </div>
+<% end %>
+
+<div>
+  <ul>
+    <% @garotas.each do |garota| %>
+      <li>
+        <p><%= garota.nome %></p>
+        <img src="http://im.r7.com/outros/<%= garota.foto %>">
+        tags: <% garota.tag_list.each do |t| %>
+          <%= link_to t, {:action=>"search",:tag=>t} %>
+          <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 
