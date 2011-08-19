@@ -4,6 +4,8 @@ class GarotasController < ApplicationController
       @garotas = Garota.tagged_with(params[:tag]).paginate(:page=>params[:page])
     else 
       #@garotas = Garota.find :all, :limit=>5
+      @destaques = Garota.find(:all, :limit=>5, :offset=>rand(Garota.count))
+
       @garotas = Garota.paginate(:page=>params[:page])
     end
   end
